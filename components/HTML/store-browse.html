@@ -9,14 +9,14 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#"><img class="brandimg" alt="Brand" src="img/2bucklogo.png"></a>
+            <a class="navbar-brand" href="#"><img class="branding" alt="Brand" src="img/2bucklogo.png"></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="signedInAbout.html">About</a></li>
                 <li><a href="#">Store</a></li>
                 <li><a href="#" ng-click="$ctrl.logOut">Log Out</a></li>
             </ul>
@@ -48,171 +48,54 @@
     <div>
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">{{ $ctrl.selected.item.title }}</h3>
+            <toaster-container></toaster-container>
+            <h3 class="modal-title" id="modal-title">{{ $ctrl.item.title }}</h3>
         </div>
         <div class="modal-body" id="modal-body">
-            <img src="img/FullSizeRender.jpg"/>
-            <b>{{ $ctrl.selected.item.Description }}</b>
+            <!--<div>{{ $ctrl.selected.item.Picture }}</div>-->
+            <img style="height: 750px" src="{{ $ctrl.item.Picture }}"/>
+            <b>{{ $ctrl.item.Description }}</b>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.pop()">Don't Press Me!!!!!</button>
         </div>
     </script>
     </div>
 
-
-
-    <hr />
+    <br/>
 
     <div class="container" ng-show="$ctrl.isVisible">
-        <h3>Socks <span>(Whatever Size)</span></h3>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3">
 
-                <img  ng-click="$ctrl.open()" src="img/FullSizeRender.jpg" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #1</h4>
-                <p> $1.00</p>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3" ng-repeat="item in $ctrl.items">
+                <img ng-click="$ctrl.open(item)" ng-src="{{ item.Picture }}" alt="Sock" class="img-thumbnail" >
+                <p class="product-name" ng-click="$ctrl.open()">{{ item.title }}</p>
+                <p class="amount"> $1.00</p>
                 <select>
                     <option>{{ $ctrl.Sizes[0] }}</option>
                     <option>{{ $ctrl.Sizes[1] }}</option>
                     <option>{{ $ctrl.Sizes[2] }}</option>
                 </select>
-                <ngcart-addtocart id="item1" name="My Item #1" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5007.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #2</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item2" name="My Item #2" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5008.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #3</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item3" name="My Item #3" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5010.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #4</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item4" name="My Item #4" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
+                <ngcart-addtocart id="{{ item.id }}" name="{{ item.title }}" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
             </div>
         </div>
-        <h3> <span>(Whatever Size)</span></h3>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5011.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #5</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item5" name="My Item #5" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5012.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #6</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item6" name="My Item #6" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5013.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #7</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item7" name="My Item #7" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5014.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #8</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item8" name="My Item #8" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
+        <hr/>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="com-md-4">
+                        <button class="switchButton pull-right" ng-click="$ctrl.showCart()">Go To Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <h3> <span>(Whatever Size)</span></h3>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5015.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #9</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item9" name="My Item #9" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5016.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #10</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item10" name="My Item #10" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5017.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #11</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item11" name="My Item #11" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <img src="img/IMG_5018.JPG" alt="Sock" class="img-thumbnail" style="width:150px;height:150px">
-                <h4>Sock #12</h4>
-                <p> $1.00</p>
-                <select>
-                    <option>{{ $ctrl.Sizes[0] }}</option>
-                    <option>{{ $ctrl.Sizes[1] }}</option>
-                    <option>{{ $ctrl.Sizes[2] }}</option>
-                </select>
-                <ngcart-addtocart id="item12" name="My Item #12" price="1.00" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
-            </div>
-        </div>
-
-        <button class="switchButton" ng-click="$ctrl.showCart()">Go To Cart</button>
-
     </div>
 
     <div ng-show="$ctrl.isNotVisible">
+
+        <div class="container">
+            <div class="row">
         <h3>Your Sock Cart</h3>
 
         <ngcart-cart></ngcart-cart>
@@ -232,11 +115,20 @@
                     </div>
                 </div>
             </div>
+        </div> <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="com-md-4">
+                        <button class="switchButton pull-right" ng-click="$ctrl.showCart()">Return to Store</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button class="switchButton" ng-click="$ctrl.showCart()">Return To Store</button>
-
+                </div>
+        </div>
     </div>
+
+
 </div>
 
 
@@ -259,7 +151,7 @@
 
     <script type="text/ng-template" id="template/ngCart/cart.html">
         <div class="alert alert-warning" role="alert" ng-show="ngCart.getTotalItems() === 0">
-            Your cart is empty
+            <p>Your cart is empty</p>
         </div>
 
         <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
@@ -332,7 +224,7 @@
                    ng-transclude></a>
             </div>
             <mark ng-show="inCart()">
-                This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>
+                <p class="cartItem">This item is in your cart. <a class="remove" ng-click="ngCart.removeItemById(id)" style="cursor: pointer">Remove</a></p>
             </mark>
         </div>
     </script>
@@ -367,3 +259,16 @@
 
     </script>
 </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <hr>
+            <div class="col-lg-12">
+
+                <div class="com-md-4">
+                    <p class="muted pull-right">© 2016 | 2 Buck Socks. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
